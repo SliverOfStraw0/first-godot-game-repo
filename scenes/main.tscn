@@ -24,7 +24,7 @@ size = Vector2(1562, 897.5)
 script = ExtResource("1_wytay")
 
 [node name="mainPlayer" parent="." instance=ExtResource("1_cnj32")]
-position = Vector2(551, -307)
+position = Vector2(537, -299)
 scale = Vector2(0.5, 0.5)
 
 [node name="borders" type="Node2D" parent="."]
