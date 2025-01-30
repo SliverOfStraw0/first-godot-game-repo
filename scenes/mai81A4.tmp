@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dchsea0y2sg81"]
+
+[ext_resource type="Script" path="res://scripts/main_player.gd" id="1_3y7gj"]
+[ext_resource type="Texture2D" uid="uid://b6n78axt4gnb6" path="res://sprites/icons8-inactive-state-96.png" id="2_onegg"]
+[ext_resource type="Texture2D" uid="uid://d0xu5qxvp1d5o" path="res://sprites/52839a3a-c1f3-4861-95c0-70c82b117aff.png" id="3_ae55y"]
+[ext_resource type="PackedScene" uid="uid://qvtlwqp5gu2p" path="res://scenes/lazer_beam.tscn" id="4_su7ph"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_iruvq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vhe44"]
+radius = 28.0179
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pewm6"]
+size = Vector2(26, 26)
+
+[node name="mainPlayer" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_3y7gj")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(0, 1.92709e-05)
+scale = Vector2(56.0635, 56.0635)
+mesh = SubResource("SphereMesh_iruvq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vhe44")
+
+[node name="col detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="col detection"]
+shape = SubResource("RectangleShape2D_pewm6")
+
+[node name="health_progress" type="TextureProgressBar" parent="."]
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+step = 12.5
+fill_mode = 4
+texture_under = ExtResource("2_onegg")
+texture_progress = ExtResource("3_ae55y")
+metadata/_edit_use_anchors_ = true
+
+[node name="increase progress" type="Timer" parent="."]
+autostart = true
+
+[node name="LazerBeam" parent="." instance=ExtResource("4_su7ph")]
+
+[connection signal="activateLazer" from="." to="LazerBeam" method="_on_main_player_activate_lazer"]
+[connection signal="deactivateLazer" from="." to="LazerBeam" method="_on_main_player_deactivate_lazer"]
+[connection signal="area_entered" from="col detection" to="." method="_on_col_detection_area_entered"]
+[connection signal="timeout" from="increase progress" to="." method="_on_increase_progress_timeout"]

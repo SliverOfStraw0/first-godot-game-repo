@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://xe7lwtwad427"]
+
+[ext_resource type="PackedScene" uid="uid://i85llyvyiykh" path="res://scenes/cheats.tscn" id="1_b3gpa"]
+[ext_resource type="Script" path="res://scripts/main_cam.gd" id="1_wgffd"]
+[ext_resource type="Script" path="res://scripts/save_housing.gd" id="2_uqx6n"]
+
+[node name="mainCam" type="Camera2D"]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+script = ExtResource("1_wgffd")
+
+[node name="save housing" type="Node2D" parent="."]
+script = ExtResource("2_uqx6n")
+
+[node name="Timer" type="Timer" parent="save housing"]
+wait_time = 35.0
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="cheats" parent="CanvasLayer" instance=ExtResource("1_b3gpa")]
+scale = Vector2(0.5, 0.5)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 479.0
+offset_top = 2.0
+offset_right = 641.0
+offset_bottom = 60.0
+
+[node name="Icons credits" type="Label" parent="CanvasLayer/VBoxContainer2"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Icons by icons8.com"
+
+[node name="cheast instructions" type="Label" parent="CanvasLayer/VBoxContainer2"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "press F4 to activate cheats"
+
+[node name="loop timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="save housing/Timer" to="save housing" method="_on_timer_timeout"]
+[connection signal="timeout" from="loop timer" to="." method="_on_loop_timer_timeout"]

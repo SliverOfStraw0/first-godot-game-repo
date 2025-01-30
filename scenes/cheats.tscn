@@ -1,0 +1,157 @@
+[gd_scene load_steps=2 format=3 uid="uid://i85llyvyiykh"]
+
+[ext_resource type="Script" path="res://scripts/cheats.gd" id="1_g6pb3"]
+
+[node name="cheats" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g6pb3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 640.0
+offset_bottom = 638.0
+color = Color(0.12549, 0.12549, 0.12549, 0.254902)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 640.0
+offset_bottom = 358.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="gravity" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/gravity"]
+layout_mode = 2
+text = "gravity"
+
+[node name="number" type="Label" parent="MarginContainer/VBoxContainer/gravity"]
+layout_mode = 2
+text = "000"
+
+[node name="gravity slider" type="HSlider" parent="MarginContainer/VBoxContainer/gravity"]
+layout_mode = 2
+min_value = 1.0
+max_value = 2000.0
+value = 981.0
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="jump force" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/jump force"]
+layout_mode = 2
+text = "jump force"
+
+[node name="number" type="Label" parent="MarginContainer/VBoxContainer/jump force"]
+layout_mode = 2
+text = "000"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/jump force"]
+layout_mode = 2
+max_value = 1000.0
+value = 400.0
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="max speed" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/max speed"]
+layout_mode = 2
+text = "max speed"
+
+[node name="number" type="Label" parent="MarginContainer/VBoxContainer/max speed"]
+layout_mode = 2
+text = "000"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/max speed"]
+layout_mode = 2
+max_value = 1000.0
+value = 400.0
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="accelaration" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/accelaration"]
+layout_mode = 2
+text = "accelaration"
+
+[node name="number" type="Label" parent="MarginContainer/VBoxContainer/accelaration"]
+layout_mode = 2
+text = "000"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/accelaration"]
+layout_mode = 2
+max_value = 500.0
+value = 50.0
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="strength" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/strength"]
+layout_mode = 2
+text = "strength
+"
+
+[node name="number" type="Label" parent="MarginContainer/VBoxContainer/strength"]
+layout_mode = 2
+text = "000"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/strength"]
+layout_mode = 2
+min_value = -5.0
+value = 50.0
+
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="reset" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "reset val"
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="max health" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "max progress
+"
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="update" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "update val"
+
+[connection signal="mouse_entered" from="MarginContainer" to="." method="_on_margin_container_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer" to="." method="_on_margin_container_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/max health" to="." method="_on_max_health_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/update" to="." method="_on_update_pressed"]

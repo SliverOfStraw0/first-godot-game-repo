@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://crp6cwqodlkvh"]
+
+[ext_resource type="Script" path="res://scripts/p_layerprojectile.gd" id="1_s8o17"]
+
+[node name="PLayerprojectile" type="Node2D"]
+script = ExtResource("1_s8o17")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+scale = Vector2(2, 2)

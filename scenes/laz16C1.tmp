@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://qvtlwqp5gu2p"]
+
+[ext_resource type="Script" path="res://scripts/lazer_beam.gd" id="1_l1gkp"]
+
+[node name="LazerBeam" type="RayCast2D"]
+target_position = Vector2(90, 0)
+script = ExtResource("1_l1gkp")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 63, 0)
+default_color = Color(0.776471, 1, 1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]

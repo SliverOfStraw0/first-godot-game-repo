@@ -1,0 +1,165 @@
+[gd_scene load_steps=11 format=3 uid="uid://cgmhqc6xcm1kd"]
+
+[ext_resource type="PackedScene" uid="uid://dchsea0y2sg81" path="res://scenes/main_player.tscn" id="1_cnj32"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_wytay"]
+[ext_resource type="PackedScene" uid="uid://xe7lwtwad427" path="res://scenes/main_cam.tscn" id="3_es6n6"]
+[ext_resource type="Texture2D" uid="uid://dadkl35oadu5e" path="res://sprites/Sprite-SOS.png" id="4_5u56j"]
+[ext_resource type="Script" path="res://scripts/startup_dialoge.gd" id="5_81vdd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ipyyl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3fg3"]
+size = Vector2(599, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmayi"]
+size = Vector2(32, 1683)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfnyc"]
+size = Vector2(1562, 749)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_riurr"]
+size = Vector2(1562, 897.5)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_wytay")
+
+[node name="mainPlayer" parent="." instance=ExtResource("1_cnj32")]
+position = Vector2(551, -307)
+scale = Vector2(0.5, 0.5)
+
+[node name="borders" type="Node2D" parent="."]
+
+[node name="world border" type="StaticBody2D" parent="borders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="borders/world border"]
+position = Vector2(0, 349)
+shape = SubResource("WorldBoundaryShape2D_ipyyl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="borders/world border"]
+position = Vector2(-647, 0)
+rotation = 1.57012
+shape = SubResource("WorldBoundaryShape2D_ipyyl")
+disabled = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="borders/world border"]
+position = Vector2(647, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_ipyyl")
+disabled = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="borders/world border"]
+position = Vector2(0, -1121)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_ipyyl")
+
+[node name="temporary" type="CollisionShape2D" parent="borders/world border"]
+position = Vector2(0, -356)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_ipyyl")
+
+[node name="top and bottom separator" type="StaticBody2D" parent="borders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="borders/top and bottom separator"]
+position = Vector2(-363.5, -387)
+shape = SubResource("RectangleShape2D_m3fg3")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="borders/top and bottom separator"]
+position = Vector2(363, -386)
+shape = SubResource("RectangleShape2D_m3fg3")
+one_way_collision = true
+
+[node name="Label" type="Label" parent="borders/top and bottom separator"]
+offset_left = 68.0
+offset_top = -474.0
+offset_right = 266.0
+offset_bottom = -451.0
+text = "To get back follow arrows"
+
+[node name="Label2" type="Label" parent="borders/top and bottom separator"]
+offset_left = 12.0
+offset_top = -490.0
+offset_right = 51.0
+offset_bottom = -467.0
+rotation = 1.57079
+text = ">>>>"
+
+[node name="Label" type="Label" parent="borders"]
+offset_left = -634.0
+offset_right = -159.0
+offset_bottom = 23.0
+text = "<<<                                                                                                                                                                                                                                                                                                  >>>
+
+
+"
+
+[node name="mainCam" parent="." instance=ExtResource("3_es6n6")]
+position = Vector2(0, -762)
+position_smoothing_speed = 3.0
+
+[node name="backstage area detectors" type="Node2D" parent="."]
+
+[node name="left looping" type="Area2D" parent="backstage area detectors" groups=["left looping"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="backstage area detectors/left looping"]
+position = Vector2(-679, -467.5)
+shape = SubResource("RectangleShape2D_xmayi")
+
+[node name="right looping" type="Area2D" parent="backstage area detectors" groups=["right looping"]]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="backstage area detectors/right looping"]
+position = Vector2(679, -467.5)
+shape = SubResource("RectangleShape2D_xmayi")
+
+[node name="is inside fighting area" type="Area2D" parent="backstage area detectors" groups=["fighting area"]]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="backstage area detectors/is inside fighting area"]
+position = Vector2(0, 22.5)
+shape = SubResource("RectangleShape2D_hfnyc")
+
+[node name="shoping_other area" type="Area2D" parent="backstage area detectors" groups=["shoping and other area"]]
+visible = false
+position = Vector2(0, -360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="backstage area detectors/shoping_other area"]
+position = Vector2(0, -459.25)
+shape = SubResource("RectangleShape2D_riurr")
+
+[node name="image around" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="image around"]
+modulate = Color(1, 1, 1, 0.392157)
+texture_filter = 1
+offset_left = -1225.0
+offset_top = -416.0
+offset_right = -946.0
+offset_bottom = -19.0
+scale = Vector2(2, 2)
+texture = ExtResource("4_5u56j")
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="image around"]
+modulate = Color(1, 1, 1, 0.392157)
+texture_filter = 1
+offset_left = 667.0
+offset_top = -416.0
+offset_right = 946.0
+offset_bottom = -19.0
+scale = Vector2(2, 2)
+texture = ExtResource("4_5u56j")
+stretch_mode = 1
+
+[node name="startup dialoge" type="AcceptDialog" parent="."]
+title = "v 0.1.2 - playtest"
+initial_position = 1
+size = Vector2i(171, 100)
+dialog_text = "Icons by icons8.com"
+script = ExtResource("5_81vdd")
+
+[connection signal="loopPlayer" from="mainPlayer" to="mainCam" method="_on_main_player_loop_player"]
+[connection signal="moveCamera" from="mainPlayer" to="mainCam" method="_on_main_player_move_camera"]
+[connection signal="resetCamera" from="mainPlayer" to="mainCam" method="_on_main_player_reset_camera"]
+[connection signal="zoomCamera" from="mainPlayer" to="mainCam" method="_on_main_player_zoom_camera"]
+[connection signal="canceled" from="startup dialoge" to="." method="_on_startup_dialoge_canceled"]
+[connection signal="confirmed" from="startup dialoge" to="." method="_on_startup_dialoge_confirmed"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://qvtlwqp5gu2p"]
+
+[ext_resource type="Script" path="res://scripts/lazer_beam.gd" id="1_l1gkp"]
+[ext_resource type="Texture2D" uid="uid://dd3f11ueyh0c2" path="res://sprites/Untitled_design_3_-removebg-preview.png" id="2_32k7x"]
+
+[node name="LazerBeam" type="RayCast2D"]
+target_position = Vector2(90, 0)
+script = ExtResource("1_l1gkp")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 63, 0)
+width = 15.0
+default_color = Color(1, 0.956904, 0.71789, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
+modulate = Color(1, 1, 0.352941, 0.207843)
+rotation = 0.0399645
+amount = 20
+speed_scale = 1.5
+explosiveness = 0.5
+lifetime_randomness = 0.6
+texture = ExtResource("2_32k7x")
+emission_shape = 3
+emission_rect_extents = Vector2(100, 1)
+gravity = Vector2(10, 0)
+angular_velocity_max = 584.35
+scale_amount_min = 0.01
+scale_amount_max = 0.02

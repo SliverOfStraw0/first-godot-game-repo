@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvygdket6lom8"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_glw40"]
+[ext_resource type="Texture2D" uid="uid://04juptuhhjlf" path="res://sprites/icon.svg" id="1_npsac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kwdx"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgy48"]
+size = Vector2(128, 128)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_glw40")
+
+[node name="Test Dummy" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Test Dummy"]
+shape = SubResource("RectangleShape2D_7kwdx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mgy48")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_npsac")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -64.0
+offset_top = -156.0
+offset_right = 46.0
+offset_bottom = -68.0
+theme_override_font_sizes/font_size = 64
+text = "000"
+
+[connection signal="area_entered" from="Test Dummy" to="." method="_on_test_dummy_area_entered"]

@@ -1,0 +1,5 @@
+CollisionShape2D
+CharacterBody2D
+Sprite2D
+Button
+Area2D
